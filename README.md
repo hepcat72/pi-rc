@@ -6,8 +6,10 @@ This repo is a fork of pi-rc, which has been modified to be able to transmit a s
 Example:
 
 ```
-sudo ./pi_bose -i mute.json -v
+sudo ./pi_bose -i bose/mute.json -v
 ```
+
+I have 1 sample json command file, which came from https://github.com/probonopd/Lifestyle.  Data to create all other possible commands are available in that repo.
 
 pi-rc
 =====
