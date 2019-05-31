@@ -1,0 +1,128 @@
+[
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 9024,
+        "spacing_us": 4512,
+        "repeats": 1
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 564,
+        "repeats": 1
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 1692,
+        "repeats": 1
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 564,
+        "repeats": 1
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 1692,
+        "repeats": 3
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 564,
+        "repeats": 1
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 1692,
+        "repeats": 2
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 564,
+        "repeats": 1
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 1692,
+        "repeats": 1
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 564,
+        "repeats": 1
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 1692,
+        "repeats": 1
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 564,
+        "repeats": 1
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 1692,
+        "repeats": 1
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 564,
+        "repeats": 1
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 1692,
+        "repeats": 1
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 564,
+        "repeats": 8
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 1692,
+        "repeats": 7
+    },
+    {
+        "frequency": 27.145,
+        "dead_frequency": 49.830,
+        "burst_us": 564,
+        "spacing_us": 1692000, 
+        "repeats": 1
+    }
+]
