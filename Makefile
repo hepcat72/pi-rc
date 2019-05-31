@@ -21,6 +21,8 @@ endif
 
 LDLIBS := -lm
 
+all: pi_bose pi_pcm
+pi_bose: pi_bose.o mailbox.o
 pi_pcm: pi_pcm.o mailbox.o
 
 .PHONY:	clean
@@ -28,4 +30,5 @@ clean:
 	rm -f *.o
 	rm -f *.pyc
 	rm -f pi_pcm
+	rm -f pi_bose
 
