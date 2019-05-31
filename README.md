@@ -1,7 +1,7 @@
 pi-bose
 =======
 
-This repo is a fork of pi-rc, which has been modified to be able to transmit a single command to a Bose stereo whose remote operates at 27.148Mhz, such as the old Lifestyle series of Bose stereos.  This repo is a work in progress.  It currently works on my Raspberry Pi 3 with a breadboard and a 6 inch wire inserted into a hole for GPIO 4 (pin 7) to send commands to my Bose Lifestyle (series 12? - purchased in the mid 2000s).  A json file describing the on/off key frequencies must be supplied to -i for it to transmit the desired command.
+This repo is a fork of pi-rc, which has been modified to be able to transmit a single command to a Bose stereo whose remote operates at 27.148Mhz, such as the old Lifestyle series of Bose stereos.  This repo is a work in progress.  It currently works on my Raspberry Pi 3 with a breadboard and a 6 inch wire inserted into a hole for GPIO 4 (pin 7) to send commands to my Bose Lifestyle (series 12? - purchased in the early/mid 2000s).  A json file describing the on/off key frequencies must be supplied to -i for it to transmit the desired command.
 
 Example:
 
