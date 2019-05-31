@@ -11,6 +11,8 @@ sudo ./pi_bose -i bose/mute.json -v
 
 I have 1 sample json command file, which came from https://github.com/probonopd/Lifestyle.  Data to create all other possible commands are available in that repo.
 
+The following is the original README content from pi-rc...
+
 pi-rc
 =====
 
