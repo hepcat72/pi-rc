@@ -496,20 +496,6 @@ static void serve_once(const int verbose, char* json_file, const int repeat) {
     command->dead_frequency = DEFAULT_FREQUENCY;
     command->next = NULL;
 
-//    // Set up select
-//    fd_set read_fds, master;
-//    FD_ZERO(&master);
-//    FD_SET(tcp_fd, &master);
-//    FD_SET(udp_fd, &master);
-//
-//    int max_fd = tcp_fd > udp_fd
-//      ? tcp_fd
-//      : udp_fd;
-//
-//    struct timeval immediate;
-//    immediate.tv_sec = 0;
-//    immediate.tv_usec = 0;
-
     int json_fd = open(json_file, O_RDONLY, 0);
     if (read_from_fd(json_fd, verbose, &new_command) <= 0) {
         close(json_fd);
@@ -527,6 +513,7 @@ static void serve_once(const int verbose, char* json_file, const int repeat) {
     int used = 0;
     int sent_times = 0;
     int num_sends = repeat + 1;
+//    int num_sends = 2;
 
     while(sent_times < num_sends) {
  
@@ -1022,7 +1009,7 @@ static struct pi_options get_args(const int argc, char* argv[]) {
     int long_index = 0;
     int repeat_set = 0;
     while (1) {
-        opt = getopt_long(argc, argv, "hvpir:tu", long_options, &long_index);
+        opt = getopt_long(argc, argv, "hvpi:r:tu", long_options, &long_index);
         if (opt == -1) {
             break;
         }
