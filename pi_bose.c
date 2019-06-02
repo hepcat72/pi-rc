@@ -250,6 +250,7 @@ struct pi_options {
     int verbose;
     int port;
     char* json_file;
+    int repeat;
 };
 
 enum json_token {
@@ -283,7 +284,7 @@ static void set_up_signal_handlers(void);
 static void set_up_sockets(int port);
 static void initialize_dma(void);
 static void initialize_mbox(void);
-static void serve_once(int verbose, char* json_file);
+static void serve_once(int verbose, char* json_file, int repeat);
 static int parse_json(
         const char* json,
         struct command_node_t** new_command);
@@ -306,7 +307,7 @@ int main(int argc, char** argv) {
     set_up_sockets(options.port);
     initialize_dma();
     printf("Serving once\n");
-    serve_once(options.verbose,options.json_file);
+    serve_once(options.verbose,options.json_file,options.repeat);
 }
 
 
@@ -481,7 +482,7 @@ static void initialize_mbox(void) {
 }
 
 
-static void serve_once(const int verbose, char* json_file) {
+static void serve_once(const int verbose, char* json_file, const int repeat) {
     struct command_node_t* new_command = NULL;
 
     /* Calculate the frequency control word */
@@ -525,16 +526,9 @@ static void serve_once(const int verbose, char* json_file) {
 
     int used = 0;
     int sent_times = 0;
-    //int done = 0;
+    int num_sends = repeat + 1;
 
-    while(sent_times < 2) {
-//        //Sending one last transmission after used was set to 1
-//        if (used == 1) {
-//            done = 1;
-//        }
-//        if(done > 0) {
-//            done++;
-//        }
+    while(sent_times < num_sends) {
  
 #ifdef TEST_COMPILATION
         used = 1;
@@ -551,55 +545,6 @@ static void serve_once(const int verbose, char* json_file) {
             command = new_command;
             new_command = NULL;
         }
-
-//       read_fds = master;
-//        const int nfds_waiting = select(max_fd + 1, &read_fds, NULL, NULL, &immediate);
-//        if (nfds_waiting < 0) {
-//            fatal("Select failed: %s\n", strerror(errno));
-//        }
-
-//        if (0 && nfds_waiting > 0) {
-//
-//            int fd;
-//            for (fd = 0; fd < max_fd + 1; ++fd) {
-//                if (FD_ISSET(fd, &read_fds)) {
-//                    if (fd == tcp_fd) {
-//                        // New connection
-//                        int new_fd;
-//                        if ((new_fd = accept(tcp_fd, NULL, NULL)) < 0) {
-//                            fatal(
-//                                "Unable to accept TCP connection: %s\n",
-//                                strerror(errno));
-//                        }
-//                        FD_SET(new_fd, &master);
-//                        if (new_fd > max_fd) {
-//                            max_fd = new_fd;
-//                        }
-//                    }
-//                }
-//            }
-////            if (read_from_fd(json_fd, verbose, &new_command) <= 0) {
-////                printf("Closing json\n");
-////                close(fd);
-////            } else {
-////                printf("json successfully opened\n");
-////            }
-//        }
-
-//#ifdef TEST_COMPILATION
-//        used = 1;
-//#else
-//        used = fill_buffer(command, new_command, ctl, dma_reg);
-//#endif
-////        printf("command used %d\n",used);
-//        if (used > 0) {
-//            sent_times++;
-//        }
-//        if (used > 0 && new_command != NULL) {
-//            free_command(command);
-//            command = new_command;
-//            new_command = NULL;
-//        }
 
         usleep(1);
     }
@@ -1067,6 +1012,7 @@ static struct pi_options get_args(const int argc, char* argv[]) {
         {"udp", no_argument, NULL, 'u'},
         {"port", required_argument, NULL, 'p'},
         {"json_file", required_argument, NULL, 'i'},
+        {"repeat", required_argument, NULL, 'r'},
         {0, 0, 0, 0}
     };
     struct pi_options options;
@@ -1074,8 +1020,9 @@ static struct pi_options get_args(const int argc, char* argv[]) {
     options.verbose = 0;
     int opt;
     int long_index = 0;
+    int repeat_set = 0;
     while (1) {
-        opt = getopt_long(argc, argv, "hvpi:tu", long_options, &long_index);
+        opt = getopt_long(argc, argv, "hvpir:tu", long_options, &long_index);
         if (opt == -1) {
             break;
         }
@@ -1093,11 +1040,19 @@ static struct pi_options get_args(const int argc, char* argv[]) {
             case 'i':
                 options.json_file = optarg;
                 break;
+            case 'r':
+                options.repeat = atoi(optarg);
+                repeat_set = 1;
+                break;
             default:
                 fprintf(stderr, "Unknown option\n");
                 print_usage(argv[0]);
                 exit(EXIT_FAILURE);
         }
+    }
+    //Default repeat to 1
+    if(repeat_set == 0) {
+        options.repeat = 1;
     }
     return options;
 }
@@ -1106,7 +1061,7 @@ static struct pi_options get_args(const int argc, char* argv[]) {
 static void print_usage(const char* program) {
     printf("Usage: %s [OPTIONS]\n", program);
     printf("-i, --json_file  Json file containing signal info to transmit.\n");
-    printf("-p, --port       The port to listen for messags on.\n");
+    printf("-r, --repeat     The number of times to transmit the signal [1].\n");
     printf("-h, --help       Print this help message.\n");
     printf("-v, --verbose    Print more debugging information.\n");
 }
