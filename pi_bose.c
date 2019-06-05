@@ -565,7 +565,7 @@ static void terminate(const int signal_) {
     if (udp_fd != 0) {
         close(udp_fd);
     }
-    exit(1);
+    exit(signal_);
 }
 
 

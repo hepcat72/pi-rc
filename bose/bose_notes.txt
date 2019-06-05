@@ -1,0 +1,19 @@
+Simulated surround sound mode:
+
+sudo pi_bose -i /home/pi/pi-rc/bose/5_speakers.json -r 24
+
+Mute is a toggle.
+Pause is a toggle.
+AM/FM is a toggle.
+Random is basically shuffle for CDs.
+
+Not sure what max volume is, but 60 is extremely loud and it can get louder.
+
+Other functions I've yet to find codes for:
+
+seek forward
+seek back
+auto-off
+
+Skip also will toggle through radio presets.
+If there are no presets, it will increment/decrement the station number.
